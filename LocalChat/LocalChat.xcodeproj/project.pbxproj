@@ -14,9 +14,7 @@
 		641CC6F01CE0938D00DB7E46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641CC6EE1CE0938D00DB7E46 /* LaunchScreen.storyboard */; };
 		641CC6F81CE09CD300DB7E46 /* map_setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 641CC6F71CE09CD300DB7E46 /* map_setting.png */; };
 		641CC7011CE0A21300DB7E46 /* ActiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641CC6FF1CE0A21300DB7E46 /* ActiveChatCell.swift */; };
-		641CC7021CE0A21300DB7E46 /* ActiveChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 641CC7001CE0A21300DB7E46 /* ActiveChatCell.xib */; };
 		641CC7051CE0A24500DB7E46 /* PassiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641CC7031CE0A24500DB7E46 /* PassiveChatCell.swift */; };
-		641CC7061CE0A24500DB7E46 /* PassiveChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 641CC7041CE0A24500DB7E46 /* PassiveChatCell.xib */; };
 		641CC7081CE0A3E200DB7E46 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641CC7071CE0A3E200DB7E46 /* ChatViewController.swift */; };
 		64519DE21CE19D0E00E3136D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64519DE01CE19D0E00E3136D /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
@@ -31,9 +29,7 @@
 		641CC6F11CE0938D00DB7E46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		641CC6F71CE09CD300DB7E46 /* map_setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_setting.png; sourceTree = "<group>"; };
 		641CC6FF1CE0A21300DB7E46 /* ActiveChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActiveChatCell.swift; path = ../ActiveChatCell.swift; sourceTree = "<group>"; };
-		641CC7001CE0A21300DB7E46 /* ActiveChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActiveChatCell.xib; path = ../ActiveChatCell.xib; sourceTree = "<group>"; };
 		641CC7031CE0A24500DB7E46 /* PassiveChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveChatCell.swift; sourceTree = "<group>"; };
-		641CC7041CE0A24500DB7E46 /* PassiveChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassiveChatCell.xib; sourceTree = "<group>"; };
 		641CC7071CE0A3E200DB7E46 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
 		64519DE01CE19D0E00E3136D /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,9 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				641CC6FF1CE0A21300DB7E46 /* ActiveChatCell.swift */,
-				641CC7001CE0A21300DB7E46 /* ActiveChatCell.xib */,
 				641CC7031CE0A24500DB7E46 /* PassiveChatCell.swift */,
-				641CC7041CE0A24500DB7E46 /* PassiveChatCell.xib */,
 				64519DE01CE19D0E00E3136D /* SettingViewController.swift */,
 				641CC6E21CE0938D00DB7E46 /* AppDelegate.swift */,
 				641CC7071CE0A3E200DB7E46 /* ChatViewController.swift */,
@@ -146,10 +140,8 @@
 			files = (
 				641CC6F01CE0938D00DB7E46 /* LaunchScreen.storyboard in Resources */,
 				641CC6F81CE09CD300DB7E46 /* map_setting.png in Resources */,
-				641CC7021CE0A21300DB7E46 /* ActiveChatCell.xib in Resources */,
 				641CC6ED1CE0938D00DB7E46 /* Assets.xcassets in Resources */,
 				641CC6E81CE0938D00DB7E46 /* Main.storyboard in Resources */,
-				641CC7061CE0A24500DB7E46 /* PassiveChatCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
