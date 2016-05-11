@@ -18,6 +18,7 @@
 		641CC7051CE0A24500DB7E46 /* PassiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641CC7031CE0A24500DB7E46 /* PassiveChatCell.swift */; };
 		641CC7061CE0A24500DB7E46 /* PassiveChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 641CC7041CE0A24500DB7E46 /* PassiveChatCell.xib */; };
 		641CC7081CE0A3E200DB7E46 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641CC7071CE0A3E200DB7E46 /* ChatViewController.swift */; };
+		64519DE21CE19D0E00E3136D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64519DE01CE19D0E00E3136D /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		641CC7031CE0A24500DB7E46 /* PassiveChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveChatCell.swift; sourceTree = "<group>"; };
 		641CC7041CE0A24500DB7E46 /* PassiveChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassiveChatCell.xib; sourceTree = "<group>"; };
 		641CC7071CE0A3E200DB7E46 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
+		64519DE01CE19D0E00E3136D /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				641CC7001CE0A21300DB7E46 /* ActiveChatCell.xib */,
 				641CC7031CE0A24500DB7E46 /* PassiveChatCell.swift */,
 				641CC7041CE0A24500DB7E46 /* PassiveChatCell.xib */,
+				64519DE01CE19D0E00E3136D /* SettingViewController.swift */,
 				641CC6E21CE0938D00DB7E46 /* AppDelegate.swift */,
 				641CC7071CE0A3E200DB7E46 /* ChatViewController.swift */,
 				641CC6E61CE0938D00DB7E46 /* Main.storyboard */,
@@ -162,6 +165,7 @@
 				641CC6EB1CE0938D00DB7E46 /* LocalChat.xcdatamodeld in Sources */,
 				641CC7081CE0A3E200DB7E46 /* ChatViewController.swift in Sources */,
 				641CC7011CE0A21300DB7E46 /* ActiveChatCell.swift in Sources */,
+				64519DE21CE19D0E00E3136D /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
