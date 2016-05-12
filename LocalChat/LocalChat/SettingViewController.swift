@@ -8,34 +8,24 @@
 
 import UIKit
 
-protocol NumberOfSegmentRequiredDelegate: class {
-    func numberOfSegment(checked: Int)
-}
-
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    weak var delegate: NumberOfSegmentRequiredDelegate?
-    var checked : [Bool] = [false, false, false, false]
-    var checkedName : Int = 0
+    var checked: [Bool] = [false, false, false, false]
+    var checkedNumber: Int = 0
+    var backButtonPressedClosure: (Int -> ())!
     
     @IBOutlet weak var settingTableView: UITableView!
     
-    
     @IBAction func backButtonPressed(sender: AnyObject) {
-        if (self.delegate != nil) {
-            self.delegate?.numberOfSegment(checkedName)
-        }
+        backButtonPressedClosure?(checkedNumber)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: -TableView
@@ -67,7 +57,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             } else {
                 cell.accessoryType = .Checkmark
                 checked[indexPath.row] = true
-                checkedName += 1
+                checkedNumber += 1
             }
         }
     }
