@@ -11,11 +11,13 @@ import UIKit
 class ActiveChatCell: UITableViewCell {
 
     @IBOutlet weak var activeChatLabel: UILabel!
-    
-    @IBOutlet weak var activeNameAndDateLabel: UILabel!
+    @IBOutlet weak var activeNameLabel: UILabel!
+    @IBOutlet weak var activeTimeLabel: UILabel!
+    @IBOutlet weak var activeImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        activeImageView.hidden = false
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
