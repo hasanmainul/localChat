@@ -11,6 +11,8 @@ import UIKit
 class PassiveChatCell: UITableViewCell {
 
     @IBOutlet weak var passiveChatLabel: UILabel!
+        
+    @IBOutlet weak var passiveNameAndDateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

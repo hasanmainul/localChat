@@ -16,8 +16,9 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     @IBOutlet weak var chatTextField: UITextField!
     
     var frameView: UIView!
-    var numberOfSegment: Int = 2
+    var numberOfSegment: Int = Constants.segment.minimumNumberOfSegments
     var chatText: String!
+    var chatMessages = [[String: AnyObject]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,8 +73,11 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        let userName = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
+        self.chatMessages = ChatManager.sharedInstance.sendChatMessage(chatTextField.text!, withUserName: userName)
         chatText = chatTextField.text!
         chatTextField?.text = ""
+        self.chatTableView.reloadData()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -85,19 +89,23 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30;
+        return self.chatMessages.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row % 2 == 0 {
+        var dict = chatMessages[indexPath.row]
+        let userName = dict[Constants.chatManagerDictionary.keyName] as? String
+        if userName != userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String! {
             let cell = tableView.dequeueReusableCellWithIdentifier("passiveChatCell", forIndexPath: indexPath) as! PassiveChatCell
-            print(chatText)
-            cell.passiveChatLabel?.text = chatText
+            cell.passiveChatLabel?.text = dict[Constants.chatManagerDictionary.keyMessage] as? String
+            cell.passiveNameAndDateLabel?.text = dict[Constants.chatManagerDictionary.keyName] as? String
+            cell.backgroundColor = UIColor.clearColor()
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("activeChatCell", forIndexPath: indexPath) as! ActiveChatCell
-            print(chatText)
-            cell.activeChatLabel?.text = chatText
+            cell.activeChatLabel?.text = dict[Constants.chatManagerDictionary.keyMessage] as? String
+            cell.activeNameAndDateLabel?.text = dict[Constants.chatManagerDictionary.keyName] as? String
+            cell.backgroundColor = UIColor.blueColor()
             return cell
         }
     }

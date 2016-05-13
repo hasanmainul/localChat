@@ -12,6 +12,8 @@ class ActiveChatCell: UITableViewCell {
 
     @IBOutlet weak var activeChatLabel: UILabel!
     
+    @IBOutlet weak var activeNameAndDateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
