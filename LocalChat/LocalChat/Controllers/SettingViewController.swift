@@ -15,11 +15,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     var backButtonPressedClosure: (Int -> ())!
     
     @IBOutlet weak var settingTableView: UITableView!
-    
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        backButtonPressedClosure?(checkedNumber)
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -28,7 +24,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: -TableView
+    // MARK: -TableView delegate and datasource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -57,8 +53,38 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             } else {
                 cell.accessoryType = .Checkmark
                 checked[indexPath.row] = true
+            }
+        }
+    }
+    
+    // MARK: - Custom methods
+    
+    func countNumberOfCheckemark() -> Int {
+        for i in 0...4 {
+            let cell = self.settingTableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0))
+            if cell?.accessoryType == .Checkmark {
                 checkedNumber += 1
             }
+        }
+        return checkedNumber
+    }
+    
+    func showAlert() {
+        checkedNumber = 0
+        let alert = UIAlertController(title: "Naaaaa!", message: "Please select at least two user", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {action in self.viewWillAppear(true)}))
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        let countCheck = countNumberOfCheckemark()
+        if countCheck < 2 {
+            showAlert()
+        } else {
+            backButtonPressedClosure?(countCheck)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     

@@ -16,18 +16,19 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     @IBOutlet weak var chatTextField: UITextField!
     
     var frameView: UIView!
-    var numberOfSegment: Int = Constants.segment.minimumNumberOfSegments
-    var chatText: String!
+    var numberOfSegment: Int = Constants.user.minimumNumberOfUsers
     var chatMessages = [[String: AnyObject]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        
-        chatUserNameLabel?.text = String(numberOfSegment)
         
         self.frameView = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
         
@@ -36,34 +37,16 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         center.addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         center.addObserver(self, selector: #selector(keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
-        //Segment Control
+        // Segment Control
         userSegmentControl.removeAllSegments()
         for count in 0..<numberOfSegment {
             userSegmentControl.insertSegmentWithTitle("BOT\(count + 1)", atIndex: count, animated: true)
         }
         userSegmentControl.selectedSegmentIndex = 0;
+        chatUserNameLabel?.text = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
         
         chatTableView.reloadData()
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        let info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-        let keyboardHeight = keyboardSize.height
-        
-        UIView.animateWithDuration(0.25, delay: 0.25, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.view.frame = CGRectMake(0, (self.frameView.frame.origin.y - keyboardHeight), self.view.bounds.width, self.view.bounds.height)
-            }, completion: nil)        
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        UIView.animateWithDuration(0.25, delay: 0.25, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.view.frame = CGRectMake(0, (self.frameView.frame.origin.y), self.view.bounds.width, self.view.bounds.height)
-            }, completion: nil)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        scrollToBottom()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -72,12 +55,25 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    // MARK: - IBActions
+    
+    @IBAction func userSegmentControlAction(sender: AnyObject) {
+        chatUserNameLabel?.text = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
+        chatTableView.reloadData()
+        scrollToBottom()
+    }
+    
+    // MARK: - Textfield delegates and datasource
+    
     func textFieldDidEndEditing(textField: UITextField) {
         let userName = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
-        self.chatMessages = ChatManager.sharedInstance.sendChatMessage(chatTextField.text!, withUserName: userName)
-        chatText = chatTextField.text!
-        chatTextField?.text = ""
-        self.chatTableView.reloadData()
+        
+         if chatTextField?.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count != 0 {
+            self.chatMessages = ChatManager.sharedInstance.sendChatMessage(chatTextField.text!, withUserName: userName, sentTime: NSDate.init())
+            chatTextField?.text = ""
+            self.chatTableView.reloadData()
+            scrollToBottom()
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -88,25 +84,77 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         self.view.endEditing(true)
     }
     
+    // MARK: - Keyboard Handling
+    
+    func keyboardWillShow(notification: NSNotification) {
+        let info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardHeight = keyboardSize.height
+        
+        UIView.animateWithDuration(0.25, delay: 0.25, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.view.frame = CGRectMake(0, (self.frameView.frame.origin.y - keyboardHeight), self.view.bounds.width, self.view.bounds.height)
+            }, completion: nil)
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        UIView.animateWithDuration(0.25, delay: 0.25, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.view.frame = CGRectMake(0, (self.frameView.frame.origin.y), self.view.bounds.width, self.view.bounds.height)
+            }, completion: nil)
+    }
+    
+    // MARK: - TableView datasource and delegate
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.chatMessages.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var dict = chatMessages[indexPath.row]
+        let message = dict[Constants.chatManagerDictionary.keyMessage] as? String
         let userName = dict[Constants.chatManagerDictionary.keyName] as? String
+        let sentTime = dict[Constants.chatManagerDictionary.keyTime] as? String
+
         if userName != userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String! {
             let cell = tableView.dequeueReusableCellWithIdentifier("passiveChatCell", forIndexPath: indexPath) as! PassiveChatCell
-            cell.passiveChatLabel?.text = dict[Constants.chatManagerDictionary.keyMessage] as? String
-            cell.passiveNameAndDateLabel?.text = dict[Constants.chatManagerDictionary.keyName] as? String
-            cell.backgroundColor = UIColor.clearColor()
+            cell.passiveChatLabel?.text = message
+            cell.passiveNameLabel?.text = userName
+            cell.passiveTimeLabel?.text = sentTime
+            cell.passiveImageView.hidden = self.consequetiveChatFromSameUser(indexPath.row)
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("activeChatCell", forIndexPath: indexPath) as! ActiveChatCell
-            cell.activeChatLabel?.text = dict[Constants.chatManagerDictionary.keyMessage] as? String
-            cell.activeNameAndDateLabel?.text = dict[Constants.chatManagerDictionary.keyName] as? String
-            cell.backgroundColor = UIColor.blueColor()
+            cell.activeChatLabel?.text = message
+            cell.activeNameLabel?.text = userName
+            cell.activeTimeLabel?.text = sentTime
+            cell.backgroundColor = UIColor.lightGrayColor()
+            cell.activeImageView.hidden = self.consequetiveChatFromSameUser(indexPath.row)
             return cell
+        }
+    }
+    
+    // MARK: - Custom Methods
+    
+    func consequetiveChatFromSameUser(index: NSInteger) -> Bool {
+        if index == 0 {
+            return false
+        }
+        
+        var currentDict = chatMessages[index]
+        var previousDict = chatMessages[index - 1]
+        
+        let currentUser = currentDict[Constants.chatManagerDictionary.keyName] as? String
+        let previousUser = previousDict[Constants.chatManagerDictionary.keyName] as? String
+        
+        if (currentUser == previousUser) {
+            return true
+        }
+        return false
+    }
+    
+    func scrollToBottom() {
+        if chatMessages.count > 0 {
+            let lastRowIndexPath = NSIndexPath(forRow:chatMessages.count - 1, inSection: 0)
+            chatTableView.scrollToRowAtIndexPath(lastRowIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated:true)
         }
     }
     

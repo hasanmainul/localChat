@@ -7,21 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		640A8EA61CEADBBE0005F7F3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A8EA51CEADBBE0005F7F3 /* Constants.swift */; };
+		640A8EA91CEADBD20005F7F3 /* ActiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A8EA71CEADBD20005F7F3 /* ActiveChatCell.swift */; };
+		640A8EAA1CEADBD20005F7F3 /* PassiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A8EA81CEADBD20005F7F3 /* PassiveChatCell.swift */; };
 		641CC6E31CE0938D00DB7E46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641CC6E21CE0938D00DB7E46 /* AppDelegate.swift */; };
 		641CC6E81CE0938D00DB7E46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641CC6E61CE0938D00DB7E46 /* Main.storyboard */; };
 		641CC6EB1CE0938D00DB7E46 /* LocalChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 641CC6E91CE0938D00DB7E46 /* LocalChat.xcdatamodeld */; };
 		641CC6ED1CE0938D00DB7E46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 641CC6EC1CE0938D00DB7E46 /* Assets.xcassets */; };
 		641CC6F01CE0938D00DB7E46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641CC6EE1CE0938D00DB7E46 /* LaunchScreen.storyboard */; };
 		641CC6F81CE09CD300DB7E46 /* map_setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 641CC6F71CE09CD300DB7E46 /* map_setting.png */; };
-		641CC7011CE0A21300DB7E46 /* ActiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641CC6FF1CE0A21300DB7E46 /* ActiveChatCell.swift */; };
-		641CC7051CE0A24500DB7E46 /* PassiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641CC7031CE0A24500DB7E46 /* PassiveChatCell.swift */; };
-		641CC7081CE0A3E200DB7E46 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641CC7071CE0A3E200DB7E46 /* ChatViewController.swift */; };
-		644873F51CE498B900796B63 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644873F41CE498B900796B63 /* ChatManager.swift */; };
-		64519DE21CE19D0E00E3136D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64519DE01CE19D0E00E3136D /* SettingViewController.swift */; };
-		64E445D51CE591F600696A91 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E445D41CE591F600696A91 /* Constants.swift */; };
+		6488D3F61CEADC2C00DA7494 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488D3F41CEADC2C00DA7494 /* ChatViewController.swift */; };
+		6488D3F71CEADC2C00DA7494 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488D3F51CEADC2C00DA7494 /* SettingViewController.swift */; };
+		64E327531CEADC55005A2EDD /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E327521CEADC55005A2EDD /* ChatManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		640A8EA51CEADBBE0005F7F3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utils/Constants.swift; sourceTree = "<group>"; };
+		640A8EA71CEADBD20005F7F3 /* ActiveChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActiveChatCell.swift; path = CustomCells/ActiveChatCell.swift; sourceTree = "<group>"; };
+		640A8EA81CEADBD20005F7F3 /* PassiveChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassiveChatCell.swift; path = CustomCells/PassiveChatCell.swift; sourceTree = "<group>"; };
 		641CC6DF1CE0938D00DB7E46 /* LocalChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		641CC6E21CE0938D00DB7E46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		641CC6E71CE0938D00DB7E46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -30,12 +33,9 @@
 		641CC6EF1CE0938D00DB7E46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		641CC6F11CE0938D00DB7E46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		641CC6F71CE09CD300DB7E46 /* map_setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_setting.png; sourceTree = "<group>"; };
-		641CC6FF1CE0A21300DB7E46 /* ActiveChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActiveChatCell.swift; path = ../ActiveChatCell.swift; sourceTree = "<group>"; };
-		641CC7031CE0A24500DB7E46 /* PassiveChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveChatCell.swift; sourceTree = "<group>"; };
-		641CC7071CE0A3E200DB7E46 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
-		644873F41CE498B900796B63 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
-		64519DE01CE19D0E00E3136D /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		64E445D41CE591F600696A91 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6488D3F41CEADC2C00DA7494 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controllers/ChatViewController.swift; sourceTree = "<group>"; };
+		6488D3F51CEADC2C00DA7494 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = Controllers/SettingViewController.swift; sourceTree = "<group>"; };
+		64E327521CEADC55005A2EDD /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatManager.swift; path = ChatManager/ChatManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 		644873F31CE4981900796B63 /* ChatManager */ = {
 			isa = PBXGroup;
 			children = (
-				644873F41CE498B900796B63 /* ChatManager.swift */,
+				64E327521CEADC55005A2EDD /* ChatManager.swift */,
 			);
 			name = ChatManager;
 			sourceTree = "<group>";
@@ -94,8 +94,8 @@
 		644873F61CE4990600796B63 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
-				641CC6FF1CE0A21300DB7E46 /* ActiveChatCell.swift */,
-				641CC7031CE0A24500DB7E46 /* PassiveChatCell.swift */,
+				640A8EA71CEADBD20005F7F3 /* ActiveChatCell.swift */,
+				640A8EA81CEADBD20005F7F3 /* PassiveChatCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -103,8 +103,8 @@
 		644873F71CE4992400796B63 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				64519DE01CE19D0E00E3136D /* SettingViewController.swift */,
-				641CC7071CE0A3E200DB7E46 /* ChatViewController.swift */,
+				6488D3F41CEADC2C00DA7494 /* ChatViewController.swift */,
+				6488D3F51CEADC2C00DA7494 /* SettingViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -112,7 +112,7 @@
 		64E445D31CE591E000696A91 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				64E445D41CE591F600696A91 /* Constants.swift */,
+				640A8EA51CEADBBE0005F7F3 /* Constants.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -190,14 +190,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				641CC7051CE0A24500DB7E46 /* PassiveChatCell.swift in Sources */,
 				641CC6E31CE0938D00DB7E46 /* AppDelegate.swift in Sources */,
 				641CC6EB1CE0938D00DB7E46 /* LocalChat.xcdatamodeld in Sources */,
-				641CC7081CE0A3E200DB7E46 /* ChatViewController.swift in Sources */,
-				644873F51CE498B900796B63 /* ChatManager.swift in Sources */,
-				641CC7011CE0A21300DB7E46 /* ActiveChatCell.swift in Sources */,
-				64519DE21CE19D0E00E3136D /* SettingViewController.swift in Sources */,
-				64E445D51CE591F600696A91 /* Constants.swift in Sources */,
+				640A8EAA1CEADBD20005F7F3 /* PassiveChatCell.swift in Sources */,
+				6488D3F71CEADC2C00DA7494 /* SettingViewController.swift in Sources */,
+				6488D3F61CEADC2C00DA7494 /* ChatViewController.swift in Sources */,
+				640A8EA91CEADBD20005F7F3 /* ActiveChatCell.swift in Sources */,
+				640A8EA61CEADBBE0005F7F3 /* Constants.swift in Sources */,
+				64E327531CEADC55005A2EDD /* ChatManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
