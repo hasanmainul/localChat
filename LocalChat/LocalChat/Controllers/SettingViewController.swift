@@ -13,11 +13,22 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     var checked: [Bool] = [false, false, false, false]
     var checkedNumber: Int = 0
     var backButtonPressedClosure: (Int -> ())!
+    var userList = [[String: AnyObject]]()
     
     @IBOutlet weak var settingTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)        
+        userList = UsersManager.sharedInstance.getUsers()
+        
+        for i in 0..<userList.count {
+            let dict = userList[i]
+            checked[i] = (dict[Constants.userManagerDictionary.keySeleceted] as? Bool)!
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +42,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return userList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -41,7 +52,12 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else if checked[indexPath.row] {
             cell.accessoryType = .Checkmark
         }
-        cell.textLabel!.text = "BOT \(indexPath.row + 1)"
+        
+        var dict = userList[indexPath.row]
+        let userName = dict[Constants.userManagerDictionary.keyName] as? String
+        let avatarURL = dict[Constants.userManagerDictionary.keyAvatar] as? String
+        cell.textLabel!.text = userName
+        cell.imageView?.image = UIImage(named: avatarURL!)
         return cell
     }
     
@@ -59,13 +75,20 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - Custom methods
     
-    func countNumberOfCheckemark() -> Int {
-        for i in 0...4 {
+    func numberOfCheckedUser() -> Int {
+        var userListTemp = [[String: AnyObject]]()
+        for i in 0..<userList.count {
+            var dict = userList[i]
             let cell = self.settingTableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0))
             if cell?.accessoryType == .Checkmark {
                 checkedNumber += 1
+                dict[Constants.userManagerDictionary.keySeleceted] = true
+            } else {
+                dict[Constants.userManagerDictionary.keySeleceted] = false
             }
+            userListTemp.append(dict)
         }
+        UsersManager.sharedInstance.updateUserSelectedForChat(userListTemp)
         return checkedNumber
     }
     
@@ -79,7 +102,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - IBActions
     
     @IBAction func backButtonPressed(sender: AnyObject) {
-        let countCheck = countNumberOfCheckemark()
+        let countCheck = numberOfCheckedUser()
         if countCheck < 2 {
             showAlert()
         } else {

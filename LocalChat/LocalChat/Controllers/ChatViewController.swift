@@ -16,8 +16,8 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     @IBOutlet weak var chatTextField: UITextField!
     
     var frameView: UIView!
-    var numberOfSegment: Int = Constants.user.minimumNumberOfUsers
     var chatMessages = [[String: AnyObject]]()
+    var users = [[String: AnyObject]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,9 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+    
+        chatMessages = ChatManager.sharedInstance.getChatDictionary()
+        users = UsersManager.sharedInstance.getUsers()
         
         self.frameView = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
         
@@ -38,12 +41,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         center.addObserver(self, selector: #selector(keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
         // Segment Control
-        userSegmentControl.removeAllSegments()
-        for count in 0..<numberOfSegment {
-            userSegmentControl.insertSegmentWithTitle("BOT\(count + 1)", atIndex: count, animated: true)
-        }
-        userSegmentControl.selectedSegmentIndex = 0;
-        chatUserNameLabel?.text = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
+        setSegmentControl()
         
         chatTableView.reloadData()
         scrollToBottom()
@@ -69,7 +67,8 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         let userName = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
         
          if chatTextField?.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count != 0 {
-            self.chatMessages = ChatManager.sharedInstance.sendChatMessage(chatTextField.text!, withUserName: userName, sentTime: NSDate.init())
+            ChatManager.sharedInstance.sendChatMessage(chatTextField.text!, withUserName: userName, sentTime: NSDate.init())
+            chatMessages = ChatManager.sharedInstance.getChatDictionary()
             chatTextField?.text = ""
             self.chatTableView.reloadData()
             scrollToBottom()
@@ -105,7 +104,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     // MARK: - TableView datasource and delegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.chatMessages.count;
+        return chatMessages.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -158,6 +157,20 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         }
     }
     
+    func setSegmentControl() {
+        userSegmentControl.removeAllSegments()
+        for i in 0..<users.count {
+            var currentUser = users[i]
+            let userIsSelected = currentUser[Constants.userManagerDictionary.keySeleceted] as? Bool
+            let userName = currentUser[Constants.userManagerDictionary.keyName] as? String
+            if (userIsSelected != false) {
+            userSegmentControl.insertSegmentWithTitle(userName, atIndex: i, animated: true)
+            }
+        }
+        userSegmentControl.selectedSegmentIndex = 0;
+        chatUserNameLabel?.text = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -166,7 +179,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
             let nav = segue.destinationViewController as! UINavigationController
             let settingViewController = nav.topViewController as! SettingViewController
             settingViewController.backButtonPressedClosure = {(checkedNumber: Int) -> () in
-                self.numberOfSegment = checkedNumber
+                
             }
         }
     }

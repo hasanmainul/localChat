@@ -78,9 +78,9 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mys-PK-Lo8">
-                                                            <rect key="frame" x="487" y="8" width="48" height="21"/>
+                                                            <rect key="frame" x="475" y="8" width="60" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="48" id="6vs-AK-4C6"/>
+                                                                <constraint firstAttribute="width" constant="60" id="6vs-AK-4C6"/>
                                                                 <constraint firstAttribute="height" constant="21" id="sqm-Ai-azU"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -88,7 +88,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9G8-Ot-0Re">
-                                                            <rect key="frame" x="265" y="8" width="215" height="21"/>
+                                                            <rect key="frame" x="256" y="8" width="215" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="215" id="5Ax-Le-pLr"/>
                                                             </constraints>
@@ -113,7 +113,7 @@
                                                         <constraint firstAttribute="topMargin" secondItem="9G8-Ot-0Re" secondAttribute="top" id="FtO-L6-RF4"/>
                                                         <constraint firstItem="9G8-Ot-0Re" firstAttribute="height" secondItem="mys-PK-Lo8" secondAttribute="height" id="I1j-LI-mRM"/>
                                                         <constraint firstItem="0rb-hR-epg" firstAttribute="top" secondItem="9G8-Ot-0Re" secondAttribute="bottom" constant="4" id="KOl-qu-a7J"/>
-                                                        <constraint firstItem="mys-PK-Lo8" firstAttribute="leading" secondItem="9G8-Ot-0Re" secondAttribute="trailing" constant="7" id="a6U-go-nHU"/>
+                                                        <constraint firstItem="mys-PK-Lo8" firstAttribute="leading" secondItem="9G8-Ot-0Re" secondAttribute="trailing" constant="4" id="a6U-go-nHU"/>
                                                         <constraint firstItem="0rb-hR-epg" firstAttribute="leading" secondItem="PIt-Bj-faE" secondAttribute="trailing" constant="8" id="dJ5-KX-kVd"/>
                                                         <constraint firstItem="0rb-hR-epg" firstAttribute="top" secondItem="mys-PK-Lo8" secondAttribute="bottom" constant="4" id="jJX-IV-bJO"/>
                                                         <constraint firstItem="PIt-Bj-faE" firstAttribute="top" secondItem="j0d-3O-7x9" secondAttribute="topMargin" constant="6" id="mLI-eW-Iv1"/>
@@ -152,7 +152,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEc-X1-J16">
-                                                            <rect key="frame" x="64" y="8" width="215" height="21"/>
+                                                            <rect key="frame" x="72" y="8" width="215" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="215" id="twu-Ow-HOq"/>
                                                             </constraints>
@@ -161,10 +161,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZN-JY-9f2">
-                                                            <rect key="frame" x="8" y="8" width="48" height="21"/>
+                                                            <rect key="frame" x="8" y="8" width="60" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="KHa-fP-HPy"/>
-                                                                <constraint firstAttribute="width" constant="48" id="dlD-Sk-MrL"/>
+                                                                <constraint firstAttribute="width" constant="60" id="dlD-Sk-MrL"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -183,7 +183,7 @@
                                                         <constraint firstItem="tJx-ec-Rpc" firstAttribute="top" secondItem="dZN-JY-9f2" secondAttribute="bottom" constant="8" id="qlS-4o-OSa"/>
                                                         <constraint firstItem="dZN-JY-9f2" firstAttribute="leading" secondItem="tJx-ec-Rpc" secondAttribute="leading" id="r2R-aI-vtp"/>
                                                         <constraint firstAttribute="topMargin" secondItem="dZN-JY-9f2" secondAttribute="top" id="tBA-6W-HBd"/>
-                                                        <constraint firstItem="gEc-X1-J16" firstAttribute="leading" secondItem="dZN-JY-9f2" secondAttribute="trailing" constant="8" id="xh0-VV-XDE"/>
+                                                        <constraint firstItem="gEc-X1-J16" firstAttribute="leading" secondItem="dZN-JY-9f2" secondAttribute="trailing" constant="4" id="xh0-VV-XDE"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
