@@ -20,6 +20,7 @@
 		6432A8491CEB190400A81064 /* UsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6432A8481CEB190400A81064 /* UsersManager.swift */; };
 		6488D3F61CEADC2C00DA7494 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488D3F41CEADC2C00DA7494 /* ChatViewController.swift */; };
 		6488D3F71CEADC2C00DA7494 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488D3F51CEADC2C00DA7494 /* SettingViewController.swift */; };
+		64B365591CEC69E00065495F /* PaddingUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B365581CEC69E00065495F /* PaddingUILabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		6432A8481CEB190400A81064 /* UsersManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersManager.swift; path = Managers/UsersManager.swift; sourceTree = "<group>"; };
 		6488D3F41CEADC2C00DA7494 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controllers/ChatViewController.swift; sourceTree = "<group>"; };
 		6488D3F51CEADC2C00DA7494 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = Controllers/SettingViewController.swift; sourceTree = "<group>"; };
+		64B365581CEC69E00065495F /* PaddingUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaddingUILabel.swift; path = Utils/PaddingUILabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				640A8EA51CEADBBE0005F7F3 /* Constants.swift */,
+				64B365581CEC69E00065495F /* PaddingUILabel.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				640A8EA91CEADBD20005F7F3 /* ActiveChatCell.swift in Sources */,
 				6432A8491CEB190400A81064 /* UsersManager.swift in Sources */,
 				640A8EA61CEADBBE0005F7F3 /* Constants.swift in Sources */,
+				64B365591CEC69E00065495F /* PaddingUILabel.swift in Sources */,
 				6432A8461CEB17CA00A81064 /* ChatManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

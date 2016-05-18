@@ -10,7 +10,7 @@ import UIKit
 
 class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var chatUserNameLabel: UILabel!
+    @IBOutlet weak var chatUserNameLabel: PaddingUILabel!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var userSegmentControl: UISegmentedControl!
     @IBOutlet weak var chatTextField: UITextField!
@@ -43,6 +43,8 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         // Segment Control
         setSegmentControl()
         
+        let botName = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
+        chatUserNameLabel?.text = botName + Constants.userIsChatting
         chatTableView.reloadData()
         scrollToBottom()
     }
@@ -56,7 +58,8 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     // MARK: - IBActions
     
     @IBAction func userSegmentControlAction(sender: AnyObject) {
-        chatUserNameLabel?.text = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
+        let botName = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
+        chatUserNameLabel?.text = botName + Constants.userIsChatting
         chatTableView.reloadData()
         scrollToBottom()
     }
@@ -125,7 +128,6 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
             cell.activeChatLabel?.text = message
             cell.activeNameLabel?.text = userName
             cell.activeTimeLabel?.text = sentTime
-            cell.backgroundColor = UIColor.lightGrayColor()
             cell.activeImageView.hidden = self.consequetiveChatFromSameUser(indexPath.row)
             return cell
         }
@@ -168,7 +170,6 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
             }
         }
         userSegmentControl.selectedSegmentIndex = 0;
-        chatUserNameLabel?.text = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
     }
     
     // MARK: - Navigation
