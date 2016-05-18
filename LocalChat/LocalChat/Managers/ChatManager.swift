@@ -19,13 +19,13 @@ class ChatManager: NSObject {
     }
     
     func getChatDictionary() -> [[String: AnyObject]] {
-        chatInfo = defaults.objectForKey("chats") as? [[String: AnyObject]] ?? [[String: AnyObject]]()
+        chatInfo = defaults.objectForKey(Constants.keyChats) as? [[String: AnyObject]] ?? [[String: AnyObject]]()
         return chatInfo
     }
     
     func sendChatMessage(message: String, withUserName userName: String?, sentTime: NSDate) -> [[String: AnyObject]] {
         let timeFormatter: NSDateFormatter = NSDateFormatter()
-        timeFormatter.dateFormat = Constants.dateFormat.dateFormatStyle1
+        timeFormatter.dateFormat = Constants.dateFormat.dateFormatStyle2
         let timeString = timeFormatter.stringFromDate(sentTime)
         
         var dict = [String: AnyObject]()
@@ -33,7 +33,7 @@ class ChatManager: NSObject {
         dict[Constants.chatManagerDictionary.keyName] = userName
         dict[Constants.chatManagerDictionary.keyTime] = timeString
         chatInfo.append(dict)
-        defaults.setObject(chatInfo, forKey: "chats")
+        defaults.setObject(chatInfo, forKey: Constants.keyChats)
         defaults.synchronize()
         return chatInfo
     }
