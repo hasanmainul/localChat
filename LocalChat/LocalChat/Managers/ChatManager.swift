@@ -11,15 +11,17 @@ import UIKit
 class ChatManager: NSObject {
     static let sharedInstance = ChatManager()
     
-    var chatInfo = [[String: AnyObject]]()
+    private var chatInfo = [[String: AnyObject]]()
+    let defaults = NSUserDefaults.standardUserDefaults()
   
     override init() {
         super.init()
     }
     
-//    func getChatInfo(completionHandler: (messageInfo: [[String: AnyObject]]) -> Void) {
-//        completionHandler(messageInfo: chatInfo)
-//    }
+    func getChatDictionary() -> [[String: AnyObject]] {
+        chatInfo = defaults.objectForKey("chats") as? [[String: AnyObject]] ?? [[String: AnyObject]]()
+        return chatInfo
+    }
     
     func sendChatMessage(message: String, withUserName userName: String?, sentTime: NSDate) -> [[String: AnyObject]] {
         let timeFormatter: NSDateFormatter = NSDateFormatter()
@@ -31,6 +33,8 @@ class ChatManager: NSObject {
         dict[Constants.chatManagerDictionary.keyName] = userName
         dict[Constants.chatManagerDictionary.keyTime] = timeString
         chatInfo.append(dict)
+        defaults.setObject(chatInfo, forKey: "chats")
+        defaults.synchronize()
         return chatInfo
     }
 }

@@ -1,13 +1,16 @@
 struct Constants {
+    static let keyUsers = "users"
+    
     struct chatManagerDictionary {
         static let keyMessage = "message"
         static let keyName = "userName"
         static let keyTime = "sentTime"
     }
     
-    struct user {
-        static let minimumNumberOfUsers = 2
-        static let maximumNumberOfUsers = 4
+    struct userManagerDictionary {
+        static let keyName = "userName"
+        static let keyAvatar = "avatar"
+        static let keySeleceted = "selectedForChat"
     }
     
     struct dateFormat {
