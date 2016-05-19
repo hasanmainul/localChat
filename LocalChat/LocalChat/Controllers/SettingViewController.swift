@@ -10,19 +10,25 @@ import UIKit
 
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var checked: [Bool] = [false, false, false, false]
+    var checked = [Bool](count: 8, repeatedValue: false)
     var checkedNumber: Int = 0
     var backButtonPressedClosure: (Int -> ())!
     var userList = [[String: AnyObject]]()
+    var tableSection: Int = 1
+    var editButtonStartPress: Bool = true
+    let settingCellIdentifier = "settingCell"
+    let customCellIdentifier = "customSettingCell"
     
     @IBOutlet weak var settingTableView: UITableView!
-
+    @IBOutlet weak var editBarButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)        
+        super.viewWillAppear(true)
+        
         userList = UsersManager.sharedInstance.getUsers()
         
         for i in 0..<userList.count {
@@ -37,38 +43,57 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: -TableView delegate and datasource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userList.count
+        if editButtonStartPress {
+            return userList.count
+        }
+        return userList.count + 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("settingCell", forIndexPath: indexPath)
-        if !checked[indexPath.row] {
-            cell.accessoryType = .None
-        } else if checked[indexPath.row] {
-            cell.accessoryType = .Checkmark
+        if editButtonStartPress {
+            let cell = tableView.dequeueReusableCellWithIdentifier(settingCellIdentifier, forIndexPath: indexPath)
+            if !checked[indexPath.row] {
+                cell.accessoryType = .None
+            } else if checked[indexPath.row] {
+                cell.accessoryType = .Checkmark
+            }
+            
+            var dict = userList[indexPath.row]
+            let userName = dict[Constants.userManagerDictionary.keyName] as? String
+            let avatarURL = dict[Constants.userManagerDictionary.keyAvatar] as? String
+            cell.textLabel!.text = userName
+            cell.imageView?.image = UIImage(named: avatarURL!)
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(customCellIdentifier, forIndexPath: indexPath) as! EditUserCell
+            if indexPath.row == userList.count {
+                cell.editableUserNameTextField.placeholder = Constants.namePlaceholder
+                cell.deleteButton.hidden = true
+                return cell
+            }
+            var dict = userList[indexPath.row]
+            let userName = dict[Constants.userManagerDictionary.keyName] as? String
+            let avatarURL = dict[Constants.userManagerDictionary.keyAvatar] as? String
+            
+            cell.deleteButton.hidden = false
+            cell.editableUserNameTextField.text = userName
+            cell.editableUserAvatar?.image = UIImage(named: avatarURL!)
+            return cell
         }
-        
-        var dict = userList[indexPath.row]
-        let userName = dict[Constants.userManagerDictionary.keyName] as? String
-        let avatarURL = dict[Constants.userManagerDictionary.keyAvatar] as? String
-        cell.textLabel!.text = userName
-        cell.imageView?.image = UIImage(named: avatarURL!)
-        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            if cell.accessoryType == .Checkmark {
-                cell.accessoryType = .None
-                checked[indexPath.row] = false
-            } else {
-                cell.accessoryType = .Checkmark
-                checked[indexPath.row] = true
+        if editButtonStartPress {
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                if cell.accessoryType == .Checkmark {
+                    cell.accessoryType = .None
+                    checked[indexPath.row] = false
+                } else {
+                    cell.accessoryType = .Checkmark
+                    checked[indexPath.row] = true
+                }
             }
         }
     }
@@ -111,14 +136,19 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    /*
-    // MARK: - Navigation
+    @IBAction func editButtonPressed(sender: AnyObject) {      
+        if editButtonStartPress {
+            editBarButton?.title = Constants.saveTitle
+            editButtonStartPress = false
+            settingTableView.beginUpdates()
+            settingTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: userList.count, inSection: 0)], withRowAnimation: .Automatic)
+            settingTableView.endUpdates()
+            settingTableView.reloadData()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        } else {
+            editBarButton?.title = Constants.editTitle
+            editButtonStartPress = true
+            settingTableView.reloadData()
+        }
     }
-    */
-
 }

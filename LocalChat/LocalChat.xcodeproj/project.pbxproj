@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6407507B1CEDB38A00191D92 /* EditUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6407507A1CEDB38A00191D92 /* EditUserCell.swift */; };
+		6407507D1CEDBF2600191D92 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6407507C1CEDBF2600191D92 /* avatar.png */; };
 		640A8EA61CEADBBE0005F7F3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A8EA51CEADBBE0005F7F3 /* Constants.swift */; };
 		640A8EA91CEADBD20005F7F3 /* ActiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A8EA71CEADBD20005F7F3 /* ActiveChatCell.swift */; };
 		640A8EAA1CEADBD20005F7F3 /* PassiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A8EA81CEADBD20005F7F3 /* PassiveChatCell.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6407507A1CEDB38A00191D92 /* EditUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditUserCell.swift; path = CustomCells/EditUserCell.swift; sourceTree = "<group>"; };
+		6407507C1CEDBF2600191D92 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		640A8EA51CEADBBE0005F7F3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utils/Constants.swift; sourceTree = "<group>"; };
 		640A8EA71CEADBD20005F7F3 /* ActiveChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActiveChatCell.swift; path = CustomCells/ActiveChatCell.swift; sourceTree = "<group>"; };
 		640A8EA81CEADBD20005F7F3 /* PassiveChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassiveChatCell.swift; path = CustomCells/PassiveChatCell.swift; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 				641CC6E21CE0938D00DB7E46 /* AppDelegate.swift */,
 				641CC6E61CE0938D00DB7E46 /* Main.storyboard */,
 				641CC6F71CE09CD300DB7E46 /* map_setting.png */,
+				6407507C1CEDBF2600191D92 /* avatar.png */,
 				641CC6EC1CE0938D00DB7E46 /* Assets.xcassets */,
 				641CC6EE1CE0938D00DB7E46 /* LaunchScreen.storyboard */,
 				641CC6F11CE0938D00DB7E46 /* Info.plist */,
@@ -101,6 +106,7 @@
 			children = (
 				640A8EA71CEADBD20005F7F3 /* ActiveChatCell.swift */,
 				640A8EA81CEADBD20005F7F3 /* PassiveChatCell.swift */,
+				6407507A1CEDB38A00191D92 /* EditUserCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -182,6 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6407507D1CEDBF2600191D92 /* avatar.png in Resources */,
 				641CC6F01CE0938D00DB7E46 /* LaunchScreen.storyboard in Resources */,
 				641CC6F81CE09CD300DB7E46 /* map_setting.png in Resources */,
 				641CC6ED1CE0938D00DB7E46 /* Assets.xcassets in Resources */,
@@ -197,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				641CC6E31CE0938D00DB7E46 /* AppDelegate.swift in Sources */,
+				6407507B1CEDB38A00191D92 /* EditUserCell.swift in Sources */,
 				641CC6EB1CE0938D00DB7E46 /* LocalChat.xcdatamodeld in Sources */,
 				640A8EAA1CEADBD20005F7F3 /* PassiveChatCell.swift in Sources */,
 				6488D3F71CEADC2C00DA7494 /* SettingViewController.swift in Sources */,

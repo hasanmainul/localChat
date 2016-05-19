@@ -1,7 +1,13 @@
 struct Constants {
     static let keyUsers = "users"
     static let keyChats = "chats"
-    static let userIsChatting = " is chatting..."
+    static let saveTitle = "Save"
+    static let editTitle = "Edit"
+    static let namePlaceholder = "Enter new user's name"
+    
+    static func userIsChatting(str: String) -> String {
+        return "\(str) is chatting..."
+    }
     
     struct chatManagerDictionary {
         static let keyMessage = "message"
