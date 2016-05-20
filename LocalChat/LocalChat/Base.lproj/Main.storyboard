@@ -291,6 +291,58 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="customSettingCell" id="qHb-l0-Zpm" customClass="EditUserCell" customModule="LocalChat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="156" width="600" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qHb-l0-Zpm" id="eDJ-sM-CiJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W8W-ha-tBi">
+                                                    <rect key="frame" x="62" y="17" width="474" height="30"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="QNv-KU-Ogj"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hw5-Y7-kDq">
+                                                    <rect key="frame" x="544" y="8" width="48" height="47"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="48" id="HRb-3c-zn8"/>
+                                                        <constraint firstAttribute="height" constant="47" id="tuC-a5-O1A"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="W"/>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="IkD-1p-k46">
+                                                    <rect key="frame" x="8" y="8" width="46" height="47"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="47" id="7Hs-Lw-84a"/>
+                                                        <constraint firstAttribute="width" constant="46" id="HpS-1h-Wiy"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="W8W-ha-tBi" firstAttribute="leading" secondItem="IkD-1p-k46" secondAttribute="trailing" constant="8" id="AzV-Xy-cKs"/>
+                                                <constraint firstItem="W8W-ha-tBi" firstAttribute="top" secondItem="eDJ-sM-CiJ" secondAttribute="topMargin" constant="9" id="DQb-nY-ygO"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Hw5-Y7-kDq" secondAttribute="bottom" id="Li0-zs-Pvi"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="IkD-1p-k46" secondAttribute="leading" id="M0b-qF-XJx"/>
+                                                <constraint firstItem="Hw5-Y7-kDq" firstAttribute="leading" secondItem="W8W-ha-tBi" secondAttribute="trailing" constant="8" id="VhE-dv-0h3"/>
+                                                <constraint firstAttribute="topMargin" secondItem="Hw5-Y7-kDq" secondAttribute="top" id="gLQ-5V-N6H"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="IkD-1p-k46" secondAttribute="bottom" id="jCT-fe-h9d"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Hw5-Y7-kDq" secondAttribute="trailing" id="l5t-bq-Slj"/>
+                                                <constraint firstAttribute="topMargin" secondItem="IkD-1p-k46" secondAttribute="top" id="pvt-wT-2DL"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="W8W-ha-tBi" secondAttribute="bottom" constant="8" id="z0U-mJ-DEh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="deleteButton" destination="Hw5-Y7-kDq" id="4PG-4g-LS9"/>
+                                            <outlet property="editableUserAvatar" destination="IkD-1p-k46" id="8QE-GL-5gO"/>
+                                            <outlet property="editableUserNameTextField" destination="W8W-ha-tBi" id="SrV-2H-2XP"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                                 <connections>
@@ -313,9 +365,14 @@
                                 <action selector="backButtonPressed:" destination="NCK-Un-b3m" id="ry6-Ry-VIc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="H09-gD-xkU"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="H09-gD-xkU">
+                            <connections>
+                                <action selector="editButtonPressed:" destination="NCK-Un-b3m" id="h5v-b9-VK2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editBarButton" destination="H09-gD-xkU" id="9Ri-mx-ot4"/>
                         <outlet property="settingTableView" destination="0yX-hU-fyj" id="lQm-90-eaA"/>
                     </connections>
                 </viewController>
@@ -361,6 +418,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="avatar.png" width="383" height="354"/>
         <image name="map_setting.png" width="32" height="32"/>
     </resources>
 </document>

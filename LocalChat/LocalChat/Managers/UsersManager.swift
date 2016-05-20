@@ -19,12 +19,13 @@ class UsersManager: NSObject {
         users = [["userName": "BOT1", "avatar": "map_setting", "selectedForChat": true],
                  ["userName": "BOT2", "avatar": "map_setting", "selectedForChat": false],
                  ["userName": "HASAN", "avatar": "map_setting", "selectedForChat": true],
+                 ["userName": "HASAN1", "avatar": "map_setting", "selectedForChat": false],
                  ["userName": "TANI", "avatar": "map_setting", "selectedForChat": false]]
         defaults.setObject(users, forKey: Constants.keyUsers)
     }
     
     func getUsers() -> [[String: AnyObject]] {
-        users = (defaults.objectForKey(Constants.keyUsers) as? [[String: AnyObject]])! ?? [[String: AnyObject]]()
+        users = defaults.objectForKey(Constants.keyUsers) as? [[String: AnyObject]] ?? [[String: AnyObject]]()
         return users
     }
     

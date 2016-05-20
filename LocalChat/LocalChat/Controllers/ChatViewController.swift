@@ -19,6 +19,9 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     var chatMessages = [[String: AnyObject]]()
     var users = [[String: AnyObject]]()
     
+    let passiveChatCellIdentifier = "passiveChatCell"
+    let activeChatCellIdentifier = "activeChatCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -29,7 +32,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-    
+        
         chatMessages = ChatManager.sharedInstance.getChatDictionary()
         users = UsersManager.sharedInstance.getUsers()
         
@@ -43,8 +46,9 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         // Segment Control
         setSegmentControl()
         
-        let botName = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
-        chatUserNameLabel?.text = botName + Constants.userIsChatting
+        let userName = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
+        chatUserNameLabel?.text = Constants.userIsChatting(userName)
+        chatTextField.returnKeyType = .Send
         chatTableView.reloadData()
         scrollToBottom()
     }
@@ -58,8 +62,8 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
     // MARK: - IBActions
     
     @IBAction func userSegmentControlAction(sender: AnyObject) {
-        let botName = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
-        chatUserNameLabel?.text = botName + Constants.userIsChatting
+        let userName = userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String!
+        chatUserNameLabel?.text = Constants.userIsChatting(userName)
         chatTableView.reloadData()
         scrollToBottom()
     }
@@ -117,14 +121,14 @@ class ChatViewController: UIViewController, UITextFieldDelegate, UITableViewDele
         let sentTime = dict[Constants.chatManagerDictionary.keyTime] as? String
 
         if userName != userSegmentControl.titleForSegmentAtIndex(userSegmentControl.selectedSegmentIndex) as String! {
-            let cell = tableView.dequeueReusableCellWithIdentifier("passiveChatCell", forIndexPath: indexPath) as! PassiveChatCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(passiveChatCellIdentifier, forIndexPath: indexPath) as! PassiveChatCell
             cell.passiveChatLabel?.text = message
             cell.passiveNameLabel?.text = userName
             cell.passiveTimeLabel?.text = sentTime
             cell.passiveImageView.hidden = self.consequetiveChatFromSameUser(indexPath.row)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("activeChatCell", forIndexPath: indexPath) as! ActiveChatCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(activeChatCellIdentifier, forIndexPath: indexPath) as! ActiveChatCell
             cell.activeChatLabel?.text = message
             cell.activeNameLabel?.text = userName
             cell.activeTimeLabel?.text = sentTime
