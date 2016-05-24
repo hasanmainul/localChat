@@ -306,6 +306,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="NCK-Un-b3m" id="TEa-qb-9hf"/>
+                                                    </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hw5-Y7-kDq">
                                                     <rect key="frame" x="544" y="8" width="48" height="47"/>
@@ -372,6 +375,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backBarButton" destination="uOu-Ll-4Kj" id="zVR-q3-4cQ"/>
                         <outlet property="editBarButton" destination="H09-gD-xkU" id="9Ri-mx-ot4"/>
                         <outlet property="settingTableView" destination="0yX-hU-fyj" id="lQm-90-eaA"/>
                     </connections>

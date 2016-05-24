@@ -8,20 +8,21 @@
 
 import UIKit
 
-class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var checked = [Bool](count: 8, repeatedValue: false)
+class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+
+    var checked = [Bool](count: Constants.maxUser, repeatedValue: false)
     var checkedNumber: Int = 0
     var backButtonPressedClosure: (Int -> ())!
     var userList = [[String: AnyObject]]()
-    var tableSection: Int = 1
-    var editButtonStartPress: Bool = true
+    var editButtonStartPress = true
+    
     let settingCellIdentifier = "settingCell"
     let customCellIdentifier = "customSettingCell"
     
     @IBOutlet weak var settingTableView: UITableView!
+    @IBOutlet weak var backBarButton: UIBarButtonItem!
     @IBOutlet weak var editBarButton: UIBarButtonItem!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -78,6 +79,8 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             let avatarURL = dict[Constants.userManagerDictionary.keyAvatar] as? String
             
             cell.deleteButton.hidden = false
+            cell.editableUserNameTextField.delegate = self
+            cell.editableUserNameTextField.returnKeyType = UIReturnKeyType.Done
             cell.editableUserNameTextField.text = userName
             cell.editableUserAvatar?.image = UIImage(named: avatarURL!)
             return cell
@@ -119,36 +122,67 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func showAlert() {
         checkedNumber = 0
-        let alert = UIAlertController(title: "Naaaaa!", message: "Please select at least two user", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {action in self.viewWillAppear(true)}))
+        let alert = UIAlertController(title: Constants.alertMessages.titleForWarning, message: Constants.alertMessages.selectUserMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: Constants.alertMessages.titleOk, style: UIAlertActionStyle.Default, handler:
+            {action in self.viewWillAppear(true)}))
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func updateUsers() {
+        var userListTemp = [[String: AnyObject]]()
+        for i in 0..<userList.count {
+            var dict = userList[i]
+            let cell = settingTableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as! EditUserCell
+            dict[Constants.userManagerDictionary.keyName] = cell.editableUserNameTextField.text
+            userListTemp.append(dict)
+        }
+        
+        let cell = settingTableView.cellForRowAtIndexPath(NSIndexPath(forRow: userList.count, inSection: 0)) as! EditUserCell
+        if cell.editableUserNameTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count != 0 {
+            var dict = [String: AnyObject]()
+            dict[Constants.userManagerDictionary.keyName] = cell.editableUserNameTextField.text
+            dict[Constants.userManagerDictionary.keyAvatar] = "map_setting" // For time being, dummy avatar
+            userListTemp.append(dict)
+        }
+        UsersManager.sharedInstance.updateUserSelectedForChat(userListTemp)
     }
     
     // MARK: - IBActions
     
     @IBAction func backButtonPressed(sender: AnyObject) {
-        let countCheck = numberOfCheckedUser()
-        if countCheck < 2 {
-            showAlert()
+        if editButtonStartPress {
+            let countCheck = numberOfCheckedUser()
+            if countCheck < 2 || countCheck > 4 {
+                showAlert()
+            } else {
+                backButtonPressedClosure?(countCheck)
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         } else {
-            backButtonPressedClosure?(countCheck)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            editButtonStartPress = true
+            backBarButton.title = Constants.backTitle
+            editBarButton.title = Constants.editTitle
+            settingTableView.reloadData()
         }
     }
     
-    @IBAction func editButtonPressed(sender: AnyObject) {      
+    @IBAction func editButtonPressed(sender: AnyObject) {
         if editButtonStartPress {
             editBarButton?.title = Constants.saveTitle
+            backBarButton.title = Constants.cancelTitle
             editButtonStartPress = false
             settingTableView.beginUpdates()
             settingTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: userList.count, inSection: 0)], withRowAnimation: .Automatic)
             settingTableView.endUpdates()
             settingTableView.reloadData()
-
         } else {
             editBarButton?.title = Constants.editTitle
+            backBarButton.title = Constants.backTitle
             editButtonStartPress = true
+            updateUsers()
+            userList = UsersManager.sharedInstance.getUsers()
             settingTableView.reloadData()
         }
     }
+    
 }
